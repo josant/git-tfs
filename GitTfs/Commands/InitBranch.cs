@@ -11,9 +11,6 @@ using Sep.Git.Tfs.Core.TfsInterop;
 
 namespace Sep.Git.Tfs.Commands
 {
-    [Pluggable("init-branch")]
-    [Description("init-branch [$/Repository/path <git-branch-name-wished>|--all]\n ex : git tfs init-branch $/Repository/ProjectBranch\n      git tfs init-branch $/Repository/ProjectBranch myNewBranch\n      git tfs init-branch --all\n      git tfs init-branch --tfs-parent-branch=$/Repository/ProjectParentBranch $/Repository/ProjectBranch")]
-    [RequiresValidGitRepository]
     public class InitBranch : GitTfsCommand
     {
         private readonly TextWriter _stdout;
