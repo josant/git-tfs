@@ -114,7 +114,7 @@ namespace Sep.Git.Tfs.Commands
 
             string[] revList = null;
             repo.CommandOutputPipe(tr => revList = tr.ReadToEnd().Split('\n').Where(s => !String.IsNullOrWhiteSpace(s)).ToArray(),
-                                   "rev-list", "--parents", "--ancestry-path", "--first-parent", "--reverse", tfsLatest + ".." + refToCheckin);
+                                   "--no-pager", "rev-list", "--parents", "--ancestry-path", "--first-parent", "--reverse", tfsLatest + ".." + refToCheckin);
 
             string currentParent = tfsLatest;
             long newChangesetId = 0;
@@ -186,7 +186,7 @@ namespace Sep.Git.Tfs.Commands
             while (true)
             {
                 // determine first descendant of tfsLatest
-                string revList = repo.CommandOneline("rev-list", "--parents", "--ancestry-path", "--first-parent", "--reverse", tfsLatest + ".." + refToCheckin);
+                string revList = repo.CommandOneline("--no-pager", "rev-list", "--parents", "--ancestry-path", "--first-parent", "--reverse", tfsLatest + ".." + refToCheckin);
                 if (String.IsNullOrWhiteSpace(revList))
                 {
                     _stdout.WriteLine("No more to rcheckin.");
